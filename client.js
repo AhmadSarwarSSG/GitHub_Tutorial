@@ -1,5 +1,4 @@
 //Getting User Borwer, Window and Device Info
-alert(gfg);
 var i = "";
 screen.width && ((width = screen.width ? screen.width : ""), (height = screen.height ? screen.height : ""), (i += width + " x " + height));
 var n,
@@ -271,7 +270,7 @@ connection.on("ReceiveAction", function (actionsCount) {
 });
 
 document.addEventListener('click', (event) => {
-    var flowSession = "webtracker_flow" + getWebsite();
+    var flowSession = "webtracker_flow" + getWebsit();
 
     console.log('--- flow session --- ' + flowSession);
 
