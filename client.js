@@ -1,4 +1,5 @@
 //Getting User Borwer, Window and Device Info
+alert(gfg);
 var i = "";
 screen.width && ((width = screen.width ? screen.width : ""), (height = screen.height ? screen.height : ""), (i += width + " x " + height));
 var n,
