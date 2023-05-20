@@ -194,7 +194,16 @@ var connection = new signalR.HubConnectionBuilder()
         transport: signalR.HttpTransportType.WebSockets
     })
     .build();
-
+window.onerror = 
+              function (msg, source, lineNo, columnNo, error) {
+                connection.invoke("AddError", msg, source, lineNo, columnNo, getWebsite())
+                alert("Error: " + msg + 
+                      "\nScript: " + source + 
+                      "\nLine: " + lineNo + 
+                      "\nColumn: " + columnNo + 
+                      "\nStackTrace: " + error);
+                return true;
+            };
 const GEO_LOCATION_PROVIDER = "https://geolocation-db.com/jsonp";
 
 connection.start().then((event) => {
