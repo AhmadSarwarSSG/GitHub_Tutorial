@@ -293,7 +293,7 @@ document.addEventListener('click', (event) => {
 window.onerror = 
               function (msg, source, lineNo, columnNo, error) {
                 connection.invoke("AddError", msg, source, lineNo, columnNo, error, getWebsite())
-                alert("Error: " + msg + 
+                console.log("Error: " + msg + 
                       "\nScript: " + source + 
                       "\nLine: " + lineNo + 
                       "\nColumn: " + columnNo + 
