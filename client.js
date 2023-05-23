@@ -303,7 +303,7 @@ window.onerror =
 // Custom function to handle captured warnings
 function handleWarning(message, source, line) {
   // Do something with the captured warning, source, and line
-  console.log("Captured warning:", message);
+  console.warn("Captured warning:", message);
   console.log("Source:", source);
   console.log("Line:", line);
 }
@@ -313,9 +313,10 @@ function handleWarning(message, source, line) {
   var originalWarn = console.warn;
   console.warn = function() {
     var message = Array.from(arguments).join(' ');
-    var stackTrace = new Error().stack.split("\n")[2].trim().split(" ");
-    var source = stackTrace[stackTrace.length - 1].replace(/\(|\)/g, "");
-    var line =stack.match(/<anonymous>:.*:(\d+:\d+)/)[1];
+    var stackTrace = new Error().stack.split("\n");
+    var callerLine = stackTrace[2].trim();
+    var source = callerLine.match(/\((.*):[0-9]+:[0-9]+\)$/)[1];
+    var line = callerLine.match(/:([0-9]+):[0-9]+\)$/)[1];
     handleWarning(message, source, line);
     originalWarn.apply(console, arguments);
   };
@@ -323,5 +324,3 @@ function handleWarning(message, source, line) {
 
 // Trigger a warning
 console.warn("This is a warning message!");
-
-
