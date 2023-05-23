@@ -300,3 +300,22 @@ window.onerror =
                       "\nStackTrace: " + error);
                 return true;
             };
+// Custom function to handle captured warnings
+function handleWarning(message) {
+  // Do something with the captured warning
+  console.log("Captured warning:", message);
+}
+
+// Override console.warn() to capture warnings
+(function() {
+  var originalWarn = console.warn;
+  console.warn = function() {
+    var message = Array.from(arguments).join(' ');
+    handleWarning(message);
+    originalWarn.apply(console, arguments);
+  };
+})();
+
+// Trigger a warning
+console.warn("This is a warning message!");
+
