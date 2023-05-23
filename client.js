@@ -315,7 +315,7 @@ function handleWarning(message, source, line) {
     var message = Array.from(arguments).join(' ');
     var stackTrace = new Error().stack.split("\n")[2].trim().split(" ");
     var source = stackTrace[stackTrace.length - 1].replace(/\(|\)/g, "");
-    var line = stackTrace[stackTrace.length - 2].split(":")[1];
+    var line =stack.match(/<anonymous>:.*:(\d+:\d+)/)[1];
     handleWarning(message, source, line);
     originalWarn.apply(console, arguments);
   };
