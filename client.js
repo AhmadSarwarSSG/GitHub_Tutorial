@@ -303,7 +303,7 @@ window.onerror =
 // Custom function to handle captured warnings
 function handleWarning(message) {
   // Do something with the captured warning
-  console.log("Captured warning:", message);
+  connection.invoke("AddWarning", message, getWebsite());
 }
 
 // Override console.warn() to capture warnings
