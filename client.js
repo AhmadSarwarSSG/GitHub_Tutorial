@@ -301,11 +301,9 @@ window.onerror =
                 return true;
             };
 // Custom function to handle captured warnings
-function handleWarning(message, source, line) {
-  // Do something with the captured warning, source, and line
-  console.warn("Captured warning:", message);
-  console.log("Source:", source);
-  console.log("Line:", line);
+function handleWarning(message) {
+  // Do something with the captured warning
+  console.log("Captured warning:", message);
 }
 
 // Override console.warn() to capture warnings
@@ -313,11 +311,7 @@ function handleWarning(message, source, line) {
   var originalWarn = console.warn;
   console.warn = function() {
     var message = Array.from(arguments).join(' ');
-    var stackTrace = new Error().stack.split("\n");
-    var callerLine = stackTrace[2].trim();
-    var source = callerLine.match(/\((.*):[0-9]+:[0-9]+\)$/)[1];
-    var line = callerLine.match(/:([0-9]+):[0-9]+\)$/)[1];
-    handleWarning(message, source, line);
+    handleWarning(message);
     originalWarn.apply(console, arguments);
   };
 })();
